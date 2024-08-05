@@ -1,0 +1,20 @@
+{
+  "name": "com.exerussus.1minigames",
+  "version": "1.0.0",
+  "displayName": "1MiniGames",
+  "description": "Плагин для загрузки и выгрузки мини-игр в виде префабов.",
+  "unity": "2020.3",
+  "dependencies": {  },
+  "keywords": [
+    "1minigames",
+    "exerussus"
+  ],
+  "author": {
+    "name": "Exerussus",
+    "email": "solovyov.production@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exerussus/1MiniGames.git"
+  }
+}
