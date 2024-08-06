@@ -1,4 +1,7 @@
-﻿namespace Exerussus._1MiniGames
+﻿using System;
+using System.IO;
+
+namespace Exerussus._1MiniGames
 {
 #if UNITY_EDITOR
     
@@ -10,35 +13,38 @@
     {
         static ScriptImporter()
         {
-            if (Resources.Load<MiniGamesData>(Constants.ResourceFilePath) == null)
+            if (Resources.Load<MiniGamesData>(MiniGamesApi.ResourceFilePath) == null)
             {
-                Debug.Log("ASDASDASDASASD");
-                CreateAssetFile<MiniGamesData>();
+                CreateMiniGamesData();
             }
         }
         
-        public static void CreateAssetFile<T>(string path = "Resources/MiniGames", Color color = default) where T : ScriptableObject
+        public static void CreateMiniGamesData()
         {
             MiniGamesData miniGame = ScriptableObject.CreateInstance<MiniGamesData>();
 
-            var folderPath = "Assets/Resources/MiniGames"; 
+            var folderPath = "Assets/Resources"; 
         
             if (!AssetDatabase.IsValidFolder(folderPath))
             {
                 AssetDatabase.CreateFolder("Assets/Resources", "MiniGames");
             }
 
-            string assetPathAndName = $"{folderPath}/MiniGamesData.asset";
+            string assetPathAndName = Path.Combine(folderPath, "MiniGamesData.asset");
 
-            AssetDatabase.CreateAsset(miniGame, assetPathAndName);
-            AssetDatabase.SaveAssets(); 
-
-            EditorUtility.FocusProjectWindow();
-            Selection.activeObject = miniGame;
+            try
+            {
+                AssetDatabase.CreateAsset(miniGame, assetPathAndName);
+                AssetDatabase.SaveAssets(); 
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
 
             Debug.Log("MiniGame asset created at: " + assetPathAndName);
         }
     }
-    
+     
 #endif
 }

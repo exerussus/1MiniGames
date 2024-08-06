@@ -13,6 +13,7 @@ namespace Exerussus._1MiniGames
         private static MiniGamesData _miniGamesData;
         private static bool _isInitialized;
         private readonly Dictionary<string, GameObject> _miniGames = new();
+        public const string ResourceFilePath = "MiniGamesData";
 
         private static MiniGamesApi Instance
         {
@@ -37,7 +38,7 @@ namespace Exerussus._1MiniGames
         {
             _isInitialized = true;
             _instance = new GameObject { name = "MiniGamesApi"} .AddComponent<MiniGamesApi>();
-            _miniGamesData = Resources.Load<MiniGamesData>(Constants.ResourceFilePath);
+            _miniGamesData = Resources.Load<MiniGamesData>(ResourceFilePath);
 
             foreach (var miniGamePack in _miniGamesData.MiniGames) _instance._miniGames[miniGamePack.Name] = miniGamePack.Prefab;
             
